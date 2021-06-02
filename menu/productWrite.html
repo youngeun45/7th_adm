@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<!--[if lt IE 8]> <html class="lt-ie10 lt-ie9 lt-ie8" lang="ko"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie10 lt-ie9" lang="ko"> <![endif]-->
+<!--[if IE 9]>    <html class="lt-ie10" lang="ko"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="ko"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<title>7번가피자 관리자</title>
+
+	<link href="../resources/css/common.css" rel="stylesheet" />
+	<link href="../resources/css/contents.css" rel="stylesheet" />
+	<!--[if lt IE 9]>
+		<script src="./resources/js/lib/html5shiv-3.7.3.min.js"></script>
+	<![endif]-->
+
+	<script src="../resources/js/lib/jquery-1.12.4.min.js"></script>
+	<script src="../resources/js/lib/jquery-migrate-1.4.1.min.js"></script>
+	<script src="../resources/js/lib/jquery-ui-1.11.4.min.js"></script>
+	<script src="../resources/js/lib/modernizr-2.8.3.min.js"></script>
+	<script src="../resources/js/plugins.js"></script>
+	<script src="../resources/js/flipclock.min.js"></script>
+	<script src="../resources/js/ui.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<!-- 헤더영역 -->
+		<header id="header" th:fragment="commonHeader">
+			<h1 class="logo"><a href="/"><img src="../resources/images/common/logo.png"/></a></h1>	
+			<div class="gnb_wrap">
+				<nav id="gnb">
+					<ul>
+						<li><a href="#"><i class="fa fa-inbox" aria-hidden="true"></i>상품메뉴</a>
+							<ul>
+								<li><a href="../menu/menuCategory.html">메뉴 카테고리</a></li>
+								<li><a href="../menu/menuProduct.html">메뉴 상품</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>멤버</a>
+							<ul>
+								<li><a href="../member/operator.html">운영진관리</a></li>
+								<li><a href="../member/membersInfo.html">회원정보</a></li>
+								<li><a href="../member/coupon.html">쿠폰발행</a></li>
+								<li><a href="../member/autoCoupon.html">자동쿠폰</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>가맹</a>
+							<ul>
+								<li><a href="../franchise/storeInfo.html">가맹점정보</a></li>
+								<li><a href="../franchise/storeNotice.html">가맹점 공지</a></li>
+								<li><a href="../franchise/survey.html">설문조사</a></li>
+								<li><a href="../franchise/suggestions.html">건의/제안</a></li>
+								<li><a href="../franchise/consulting.html">창업상담</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-headphones" aria-hidden="true"></i>커뮤니티</a>
+							<ul>
+								<li><a href="../community/notice.html">공지사항</a></li>
+								<li><a href="../community/faq.html">FAQ</a></li>
+								<li><a href="../community/qna.html">1:1문의</a></li>
+								<li><a href="../community/event.html">이벤트</a></li>
+								<li><a href="../community/recruit.html">인재채용</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-bar-chart-o" aria-hidden="true"></i>통계</a>
+							<ul>
+								<!-- <li><a href="../statistics/connect.html">접속</a></li> -->
+								<li><a href="../statistics/members.html">회원</a></li>
+								<li><a href="../statistics/orderSummary.html">주문요약</a></li>
+								<li><a href="../statistics/orderDetail.html">주문상세</a></li>
+								<li><a href="../statistics/orderStore.html">가맹점별 요약</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-sun-o" aria-hidden="true"></i>배너관리</a>
+							<ul>
+								<li><a href="../bannerSetting/mainBanner.html">메인배너</a></li>
+								<li><a href="../bannerSetting/contentsBanner.html">컨텐츠배너</a></li>
+								<li><a href="../bannerSetting/memberBanner.html">회원배너</a></li>
+								<li><a href="../bannerSetting/popBanner.html">팝업</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="head_utile">
+				<h2 class="head_tit">7번가피자 관리자</h2>
+				<div class="user_info">
+					<div class="head_timer">
+						<div class="date"></div>
+						<div class="clock"></div>
+					</div>
+					<div class="user_info_cot">
+						<a href="#popAdmin" class="pop_open"><span class="user_id" th:text="${session.login.name}">관리자<i class="fa fa-cogs" aria-hidden="true"></i></a></span> 님 반갑습니다!
+						<a href="javascript:void(0);" class="button btn_gray h22" id="logoutProcess">로그아웃</a>
+						<a href="#" class="button btn_red h22" id="" target="_blank">7번가홈 <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+						<a href="#" class="button btn_black h22" id="" target="_blank">웹하드 <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</div>
+			
+		</header>
+		<!-- //헤더영역 -->
+
+		<!-- 컨텐츠 영역 -->
+		<section id="container">
+			<div id="contents">
+				<h2 id="pageTit" class="page_tit">메뉴 상품</h2>
+				<div class="cont_in">
+					<table class="table tbl_left">
+						<caption>상품 등록</caption>
+						<colgroup>
+							<col style="width:200px;" />
+							<col />
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">카테고리 선택</th>
+								<td>
+									<select name="" id="" class="select">
+										<option value="">1차 카테고리</option>
+									</select>
+									<select name="" id="" class="select" disabled>
+										<option value="">2차 카테고리</option>
+									</select>
+									<span class="pl10">
+										<label class="checkbox"><input name="hotmenu" type="checkbox"><i></i>
+											<span class="lbl">[인기메뉴] 카테 등록</span>
+										</label>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">상품명</th>
+								<td><input type="text" name="" id="" class="input w400" placeholder="20자 이내"></td>
+							</tr>
+							<tr>
+								<th scope="row">가격</th>
+								<td><input type="text" name="" id="" class="input w400 t_right" placeholder="숫자만 입력"> 원</td>
+							</tr>
+							<!-- 이 항목은 피자일경우만 생성 Aida-->
+							<tr>
+								<th scope="row">피자사이즈</th>
+								<td>
+									<label class="radio"><input name="pizzaSize" type="radio"><i></i>
+										<span class="lbl">R</span>
+									</label>
+									<label class="radio"><input name="pizzaSize" type="radio"><i></i>
+										<span class="lbl">L</span>
+									</label>
+									<label class="radio"><input name="pizzaSize" type="radio"><i></i>
+										<span class="lbl">G</span>
+									</label>
+									<span>* 엣지,토핑 가격에 반영</span>
+								</td>
+							</tr>
+							<!-- //이 항목은 피자일경우만 생성 -->
+							<tr>
+								<th scope="row">기프티콘 제품코드</th>
+								<td>
+									<input type="text" name="" id="" class="input w400">
+									<span>* 코드가 일치하는 기프티콘만 이 상품에 사용할 수 있습니다.</span>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">추천태그 (선택)</th>
+								<td><input type="text" name="" id="" class="input w400" placeholder="20자 이내"></td>
+							</tr>
+							<tr>
+								<th scope="row">제품설명</th>
+								<td><input type="text" name="" id="" class="input full" placeholder="100자 이내"></td>
+							</tr>
+							<tr>
+								<th scope="row">뱃지 부착</th>
+								<td>
+									<label class="radio"><input name="badge" type="radio" checked><i></i>
+										<span class="lbl">없음</span>
+									</label>
+									<label class="radio"><input name="badge" type="radio"><i></i>
+										<span class="lbl">1 (NEW)</span>
+									</label>
+									<label class="radio"><input name="badge" type="radio"><i></i>
+										<span class="lbl">2 (HOT)</span>
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">리스팅 이미지</th>
+								<td>
+									<span class="inp_file">
+										<input class="input" type="text" placeholder="첨부파일을 선택해주세요." title="첨부파일 선택">
+										<span class="btn_file">
+											<a href="#" class="button btn_gray">파일 찾기</a>
+											<input type="file" placeholder="내용입력" title="파일첨부">
+										</span>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">상품 이미지</th>
+								<td>
+									<span class="inp_file">
+										<input class="input" type="text" placeholder="첨부파일을 선택해주세요." title="첨부파일 선택">
+										<span class="btn_file">
+											<a href="#" class="button btn_gray">파일 찾기</a>
+											<input type="file" placeholder="내용입력" title="파일첨부">
+										</span>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">주요토핑 이미지</th>
+								<td>
+									<span class="inp_file">
+										<input class="input" type="text" placeholder="첨부파일을 선택해주세요." title="첨부파일 선택">
+										<span class="btn_file">
+											<a href="#" class="button btn_gray">파일 찾기</a>
+											<input type="file" placeholder="내용입력" title="파일첨부">
+										</span>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">원산지 정보</th>
+								<td>
+									<input type="text" name="" id="" class="input w400" placeholder="100자 이내">
+									<a href="#" class="button btn_green">전체보기</a>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">알레르기 유발 성분</th>
+								<td class="line">
+									<div class="mb10">
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">밀</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">대두</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">우유</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">토마토</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">돼지고기</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">새우</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">게</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">닭고기</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">쇠고기</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">오징어</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">호두</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">계란</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">고등어</span>
+										</label>
+										<label class="checkbox"><input name="allergy" type="checkbox"><i></i>
+											<span class="lbl">굴</span>
+										</label>
+
+									</div>
+									<a href="#" class="button btn_green">전체보기</a>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">영양정보 (선택)</th>
+								<td>
+									<table class="table2 nutrition_tbl">
+										<caption>영양정보</caption>
+										<colgroup>
+											<col />
+											<col />
+											<col />
+											<col />
+											<col />
+											<col />
+											<col />
+											<col />
+											<col />
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col">엣지</th>
+												<th scope="col">1회 중량(g)</th>
+												<th scope="col">1회 조각수</th>
+												<th scope="col">총 중량(g)</th>
+												<th scope="col">열량(kcal/1회)</th>
+												<th scope="col">단백질(g/1회)</th>
+												<th scope="col">포화지방(g/1회)</th>
+												<th scope="col">나트륨(mg/1회)</th>
+												<th scope="col">당류(g/1회)</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>석쇠</td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+											</tr>
+											<tr>
+												<td>석쇠</td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+											</tr>
+											<tr>
+												<td>석쇠</td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+												<td><input type="text" class="input" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">상세정보 이미지</th>
+								<td>
+									<span class="inp_file">
+										<input class="input" type="text" placeholder="첨부파일을 선택해주세요." title="첨부파일 선택">
+										<span class="btn_file">
+											<a href="#" class="button btn_gray">파일 찾기</a>
+											<input type="file" placeholder="내용입력" title="파일첨부">
+										</span>
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="button_box">
+						<a href="#" class="button btn_black h50 w150">신규 등록</a>
+						<a href="#" class="button btn_red h50 w150 ml10">취소</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- //컨텐츠 영역 -->
+
+		<!-- 푸터영역 -->
+		<footer id="footer">
+			<p class="copy">Copyright 2018 7ST STREET PIZZA Co., Ltd. All right Reserved.</p>
+		</footer>
+		<!-- 푸터영역 -->
+	</div>
+
+	<!-- 팝업 영역 -->
+	<div id="popAdmin" class="pop_wrap">
+		<article class="popup">
+			<div class="pop_head">
+				<h1>관리자 설정</h1>
+			</div>
+			<div class="pop_cont">
+				<ul class="pop_inpbox">
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>관리자 아이디</strong>
+							<input type="text" name="" id="" class="input h40 readonly" readonly="readonly" value="admin">
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>현재 비밀번호</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>변경 할 비밀번호</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>변경 할 비밀번호 확인</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li class="mail">
+						<label>
+							<strong class="lbl"><b>*</b>이메일 주소</strong>
+							<input type="text" name="" id="" class="input h40" >
+						</label>
+						<span class="ic">@</span>
+						<input type="text" name="" id="" class="input h40" >
+						<select name="" id="" class="select h40">
+							<option value="">직접입력</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+			<div class="pop_foot">
+				<a href="" class="button w100 h50 btn_black pop_close">취소</a>
+				<a href="" class="button w100 h50 btn_red">저장</a>
+			</div>
+			<a href="#" class="btn_close pop_close">팝업닫기</a>
+		</article>
+	</div>
+	<!-- //팝업 영역 -->
+</body>
+</html>

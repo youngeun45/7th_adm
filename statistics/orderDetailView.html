@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<!--[if lt IE 8]> <html class="lt-ie10 lt-ie9 lt-ie8" lang="ko"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie10 lt-ie9" lang="ko"> <![endif]-->
+<!--[if IE 9]>    <html class="lt-ie10" lang="ko"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="ko"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<titre>7번가피자 관리자</titre>
+
+	<link href="../resources/css/common.css" rel="stylesheet" />
+	<link href="../resources/css/contents.css" rel="stylesheet" />
+	<!--[if lt IE 9]>
+		<script src="./resources/js/lib/html5shiv-3.7.3.min.js"></script>
+	<![endif]-->
+
+	<script src="../resources/js/lib/jquery-1.12.4.min.js"></script>
+	<script src="../resources/js/lib/jquery-migrate-1.4.1.min.js"></script>
+	<script src="../resources/js/lib/jquery-ui-1.11.4.min.js"></script>
+	<script src="../resources/js/lib/modernizr-2.8.3.min.js"></script>
+	<script src="../resources/js/plugins.js"></script>
+	<script src="../resources/js/flipclock.min.js"></script>
+	<script src="../resources/js/ui.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<!-- 헤더영역 -->
+		<header id="header" th:fragment="commonHeader">
+			<h1 class="logo"><a href="/"><img src="../resources/images/common/logo.png"/></a></h1>	
+			<div class="gnb_wrap">
+				<nav id="gnb">
+					<ul>
+						<li><a href="#"><i class="fa fa-inbox" aria-hidden="true"></i>상품메뉴</a>
+							<ul>
+								<li><a href="../menu/menuCategory.html">메뉴 카테고리</a></li>
+								<li><a href="../menu/menuProduct.html">메뉴 상품</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>멤버</a>
+							<ul>
+								<li><a href="../member/operator.html">운영진관리</a></li>
+								<li><a href="../member/membersInfo.html">회원정보</a></li>
+								<li><a href="../member/coupon.html">쿠폰발행</a></li>
+								<li><a href="../member/autoCoupon.html">자동쿠폰</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>가맹</a>
+							<ul>
+								<li><a href="../franchise/storeInfo.html">가맹점정보</a></li>
+								<li><a href="../franchise/storeNotice.html">가맹점 공지</a></li>
+								<li><a href="../franchise/survey.html">설문조사</a></li>
+								<li><a href="../franchise/suggestions.html">건의/제안</a></li>
+								<li><a href="../franchise/consulting.html">창업상담</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-headphones" aria-hidden="true"></i>커뮤니티</a>
+							<ul>
+								<li><a href="../community/notice.html">공지사항</a></li>
+								<li><a href="../community/faq.html">FAQ</a></li>
+								<li><a href="../community/qna.html">1:1문의</a></li>
+								<li><a href="../community/event.html">이벤트</a></li>
+								<li><a href="../community/recruit.html">인재채용</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-bar-chart-o" aria-hidden="true"></i>통계</a>
+							<ul>
+								<!-- <li><a href="../statistics/connect.html">접속</a></li> -->
+								<li><a href="../statistics/members.html">회원</a></li>
+								<li><a href="../statistics/orderSummary.html">주문요약</a></li>
+								<li><a href="../statistics/orderDetail.html">주문상세</a></li>
+								<li><a href="../statistics/orderStore.html">가맹점별 요약</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-sun-o" aria-hidden="true"></i>배너관리</a>
+							<ul>
+								<li><a href="../bannerSetting/mainBanner.html">메인배너</a></li>
+								<li><a href="../bannerSetting/contentsBanner.html">컨텐츠배너</a></li>
+								<li><a href="../bannerSetting/memberBanner.html">회원배너</a></li>
+								<li><a href="../bannerSetting/popBanner.html">팝업</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="head_utile">
+				<h2 class="head_tit">7번가피자 관리자</h2>
+				<div class="user_info">
+					<div class="head_timer">
+						<div class="date"></div>
+						<div class="clock"></div>
+					</div>
+					<div class="user_info_cot">
+						<a href="#popAdmin" class="pop_open"><span class="user_id" th:text="${session.login.name}">관리자<i class="fa fa-cogs" aria-hidden="true"></i></a></span> 님 반갑습니다!
+						<a href="javascript:void(0);" class="button btn_gray h22" id="logoutProcess">로그아웃</a>
+						<a href="#" class="button btn_red h22" id="" target="_blank">7번가홈 <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+						<a href="#" class="button btn_black h22" id="" target="_blank">웹하드 <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+					</div>
+				</div>
+			</div>
+			
+		</header>
+		<!-- //헤더영역 -->
+
+		<!-- 컨텐츠 영역 -->
+		<section id="container">
+			<div id="contents">
+				<h2 id="pageTit" class="page_tit">주문상세</h2>
+				<div class="cont_in">
+					<div class="tbl_info">
+						<div class="tit">[주문 정보]</div>
+					</div>
+					<table class="table">
+						<caption>주문 정보</caption>
+						<colgroup>
+							<col />
+							<col />
+							<col />
+							<col />
+							<col />
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">주문정보</th>
+								<th scope="col">주문일자</th>
+								<th scope="col">예약시간</th>
+								<th scope="col">주문매장</th>
+								<th scope="col">주문방법</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>I1001390208</td>
+								<td>2018-05-29 21:43:49</td>
+								<td>2018-05-30 20:30:00</td>
+								<td>위례점 (031-759-7979)</td>
+								<td>매장포장</td>
+							</tr>
+						</tbody>
+						<thead>
+							<tr>
+								<th scope="col">결제방법</th>
+								<th scope="col">결제시각</th>
+								<th scope="col">주문채널</th>
+								<th scope="col">주문상태</th>
+								<th scope="col">수령시각</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>현장결제 - 신용카드</td>
+								<td>2018-05-29 21:43:49</td>
+								<td>PC</td>
+								<td>픽업완료</td>
+								<td>2018-05-29 21:43:49</td>
+							</tr>
+							<tr>
+								<th class="bg_navy">요청사항</th>
+								<td colspan="4">고객님이 주문할때 요청사항 기재하신 거</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="tbl_info mt25">
+						<div class="tit">[주문자 정보]</div>
+					</div>
+					<table class="table">
+						<caption>주문자 정보</caption>
+						<colgroup>
+							<col style="width:11%"/>
+							<col style="width:11%"/>
+							<col style="width:11%"/>
+							<col style="width:11%"/>
+							<col style="width:11%"/>
+							<col />
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">회원ID</th>
+								<th scope="col">주문자</th>
+								<th scope="col">연락처</th>
+								<th scope="col">수령인</th>
+								<th scope="col">연락처</th>
+								<th scope="col">배달 주소</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>oodmn</td>
+								<td>최의호</td>
+								<td>010-8793-9930</td>
+								<td>최의호</td>
+								<td>010-8793-9930</td>
+								<td>충청북도 청주시 청원구 오창읍 402-23 202호</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="tbl_info mt25">
+						<div class="tit">[주문 메뉴]</div>
+					</div>
+					<table class="table2 menu_list_tbl">
+						<caption>주문 메뉴</caption>
+						<colgroup>
+							<col />
+							<col />
+							<col />
+							<col />							
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col" colspan="2">메뉴</th>
+								<th scope="col">가격</th>
+								<th scope="col">수량</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="2" class="tl">
+									<dl>
+										<dt>칠리새우피자 R</dt>
+										<dd>- 사이즈 : 석쇠R</dd>
+										<dd>- 엣지 : 치즈링</dd>
+										<dd>- 토핑 : 치즈토핑</dd>
+									</dl>
+									<dl>
+										<dt>칠리새우피자 R</dt>
+										<dd>- 사이즈 : 석쇠R</dd>
+										<dd>- 엣지 : 치즈링</dd>
+										<dd>- 토핑 : 치즈토핑</dd>
+									</dl>
+								</td>
+								<td>
+									<dl>
+										<dt>21,900월</dt>
+										<dd>+0원</dd>
+										<dd>+3,000원</dd>
+										<dd>+1,000원</dd>
+									</dl>
+									<dl>
+										<dt>21,900월</dt>
+										<dd>+0원</dd>
+										<dd>+3,000원</dd>
+										<dd>+1,000원</dd>
+									</dl>
+								</td>
+								<td>
+									<dl>
+										<dt>1</dt>
+										<dd>-</dd>
+										<dd>-</dd>
+										<dd>-</dd>
+									</dl>
+									<dl>
+										<dt>1</dt>
+										<dd>-</dd>
+										<dd>-</dd>
+										<dd>-</dd>
+									</dl>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="tl">프리미엄박스 R</td>
+								<td>31,400원</td>
+								<td>2</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="tl">치즈볼(8PCS)</td>
+								<td>2,900원</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="tl">음료수</td>
+								<td>2,900원</td>
+								<td>1</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th scope="row" colspan="2">합계</th>
+								<td class="bg_sky">91,600원</td>
+							</tr>
+							<tr>
+								<th scope="row" colspan="2">할인</th>
+								<td class="bg_sky">-5,000원</td>
+							</tr>
+							<tr>
+								<td>칠월엔 칠피자</td>
+								<td>A77A7777A</td>
+								<td>-5,000원</td>
+							</tr>
+							<tr>
+								<th scope="row" colspan="2">최종결제액</th>
+								<td class="bg_sky">86,600원</td>
+							</tr>
+						</tfoot>
+					</table>
+					<div class="button_box">
+						<a href="../statistics/orderDetail.html" class="button btn_gray h50 w150 ml10">목록</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- //컨텐츠 영역 -->
+
+		<!-- 푸터영역 -->
+		<footer id="footer">
+			<p class="copy">Copyright 2018 7ST STREET PIZZA Co., Ltd. All right Reserved.</p>
+		</footer>
+		<!-- 푸터영역 -->
+	</div>
+
+	<!-- 팝업 영역 -->
+	<div id="popAdmin" class="pop_wrap">
+		<article class="popup">
+			<div class="pop_head">
+				<h1>관리자 설정</h1>
+			</div>
+			<div class="pop_cont">
+				<ul class="pop_inpbox">
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>관리자 아이디</strong>
+							<input type="text" name="" id="" class="input h40 readonly" readonly="readonly" value="admin">
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>현재 비밀번호</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>변경 할 비밀번호</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>변경 할 비밀번호 확인</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li class="mail">
+						<label>
+							<strong class="lbl"><b>*</b>이메일 주소</strong>
+							<input type="text" name="" id="" class="input h40" >
+						</label>
+						<span class="ic">@</span>
+						<input type="text" name="" id="" class="input h40" >
+						<select name="" id="" class="select h40">
+							<option value="">직접입력</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+			<div class="pop_foot">
+				<a href="" class="button w100 h50 btn_black pop_close">취소</a>
+				<a href="" class="button w100 h50 btn_red">저장</a>
+			</div>
+			<a href="#" class="btn_close pop_close">팝업닫기</a>
+		</article>
+	</div>
+
+	<div id="popup" class="pop_wrap">
+		<article class="popup pop_small">
+			<div class="pop_cont">
+				<ul class="pop_inpbox">
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>항목 명</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>최초 수량</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="pop_foot">
+				<a href="" class="button w100 h50 btn_black pop_close">취소</a>
+				<a href="" class="button w100 h50 btn_red">저장</a>
+			</div>
+		</article>
+	</div>
+	<!-- //팝업 영역 -->
+</body>
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<!--[if lt IE 8]> <html class="lt-ie10 lt-ie9 lt-ie8" lang="ko"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie10 lt-ie9" lang="ko"> <![endif]-->
+<!--[if IE 9]>    <html class="lt-ie10" lang="ko"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="ko"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<title>7번가피자 관리자</title>
+
+	<link href="./resources/css/common.css" rel="stylesheet" />
+	<link href="./resources/css/contents.css" rel="stylesheet" />
+	<!--[if lt IE 9]>
+		<script src="./resources/js/lib/html5shiv-3.7.3.min.js"></script>
+	<![endif]-->
+
+	<script src="resources/js/lib/jquery-1.12.4.min.js"></script>
+	<script src="resources/js/lib/jquery-migrate-1.4.1.min.js"></script>
+	<script src="resources/js/lib/jquery-ui-1.11.4.min.js"></script>
+	<script src="resources/js/lib/modernizr-2.8.3.min.js"></script>
+	<script src="resources/js/plugins.js"></script>
+	<script src="resources/js/ui.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<!-- 헤더영역 -->
+		<header id="header" th:fragment="commonHeader">
+			<h1 class="logo"><a href="/"><img src="./resources/images/common/logo.png"/></a></h1>	
+			<div class="gnb_wrap">
+				<nav id="gnb">
+					<ul>
+						<li><a href="#"><i class="fa fa-inbox" aria-hidden="true"></i>제품메뉴</a>
+							<ul>
+								<li><a href="/product/productList">test</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>멤버</a>
+							<ul>
+								<li><a href="/cscenter/bannerList">운영진관리</a></li>
+								<li><a href="/cscenter/faqList">회원정보</a></li>
+								<li><a href="/cscenter/noticeList">쿠폰관리</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-home" aria-hidden="true"></i>가맹</a>
+							<ul>
+								<li><a href="/product/productList">test</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-headphones" aria-hidden="true"></i>고객센터</a>
+							<ul>
+								<li><a href="/product/productList">test</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-bar-chart-o" aria-hidden="true"></i>통계</a>
+							<ul>
+								<li><a href="/product/productList">test</a></li>
+							</ul>
+						</li>
+						<li><a href="#"><i class="fa fa-location-arrow" aria-hidden="true"></i>회사소개</a>
+							<ul>
+								<li><a href="/product/productList">test</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="head_utile">
+				<h2 class="head_tit">7번가피자 관리자</h2>
+				<div class="user_info">
+					<div class="head_timer">
+						<div class="date"></div>
+						<div class="clock"></div>
+					</div>
+					<div class="user_info_cot">
+						<span class="user_id" th:text="${session.login.name}">관리자<i class="fa fa-cogs" aria-hidden="true"></i></span> 로그인 되었습니다.
+						<a href="javascript:void(0);" class="button btn_gray h22" id="logoutProcess">로그아웃</a>
+					</div>
+				</div>
+			</div>
+			
+		</header>
+		<!-- //헤더영역 -->
+
+		<!-- 컨텐츠 영역 -->
+		<section id="container">
+			<div id="contents">
+				<h2 id="pageTit" class="page_tit">쿠폰목록</h2>
+				<div class="guide">
+					<h3>텍스트</h3>
+					<div class="cont_in">
+						<h4>컬러</h4>
+						<div class="box">
+							<strong>기본컬러</strong>
+							<strong class="t_red">t_red</strong>
+							<strong class="t_black">t_black</strong>
+							<strong class="t_blue">t_blue</strong>
+						</div>
+	
+						<h4>사이즈</h4>
+						<div class="box">
+							<span>기본사이즈</span>
+							<span class="fz14">fz14</span>
+							<span class="fz16">fz16</span>
+							<span class="fz18">fz18</span>
+						</div>
+					</div>
+	
+					<h3>버튼</h3>
+					<div class="cont_in">
+						<h4>태그 종류 <span>(클래스만 유지하면 태그변경해도 무방)</span></h4>
+						<p class="box">
+							<a href="#" class="button">a 태그</a>
+							<button class="button btn_black">button</button>
+							<input type="button" class="button btn_gray" value="input[button]">
+							<input type="submit" class="button btn_red" value="input[submit]">
+						</p>
+	
+						<h4>높이크기</h4>
+						<p class="box">
+							<a href="#" class="button h22">button h22</a>
+							<a href="#" class="button">기본사이즈</a>
+							<a href="#" class="button h34">button h34</a>
+							<a href="#" class="button h40">button h40</a>
+							<a href="#" class="button h50">button h50</a>
+						</p>
+	
+						<h4>컬러</h4>
+						<p class="box">
+							<a href="#" class="button">기본컬러</a>
+							<a href="#" class="button btn_red">btn_red</a>
+							<a href="#" class="button btn_gray">btn_gray</a>
+							<a href="#" class="button btn_black">btn_black</a>
+							<a href="#" class="button btn_green">btn_green</a>
+							<br><br>					
+							<a href="#" class="button h22 btn_gray2">btn_gray2 h22</a>
+							<a href="#" class="button h22 btn_blue2">btn_blue2 h22</a>
+						</p>
+					</div>
+	
+					<h3>form 태그</h3>
+					<div class="cont_in">
+						<h4>checkbox</h4>
+						<p class="box">
+							<label class="checkbox"><input name="checkbox" type="checkbox" checked="checked"><i></i>
+								<span class="lbl">checkbox1(checked)</span>
+							</label>
+							<label class="checkbox"><input name="checkbox" type="checkbox"><i></i>
+								<span class="lbl">checkbox2</span>
+							</label>
+							<label class="checkbox"><input name="checkbox" type="checkbox" disabled="disabled"><i></i>
+								<span class="lbl">checkbox3(disabled)</span>
+							</label>
+						</p>
+	
+						<h4>radio</h4>
+						<p class="box">
+							<label class="radio"><input name="radio" type="radio" checked="checked"><i></i>
+								<span class="lbl">radio1</span>
+							</label>
+							<label class="radio"><input name="radio" type="radio"><i></i>
+								<span class="lbl">radio2</span>
+							</label>
+							<label class="radio"><input name="radio" type="radio" disabled="disabled"><i></i>
+								<span class="lbl">radio3(disabled)</span>
+							</label>
+						</p>
+	
+						<h4>select</h4>
+						<div class="box">
+							<p>
+								<select class="select" title="옵션선택">
+									<option value="">기본셀렉트</option>
+									<option value="">옵션1</option>
+									<option value="">옵션2</option>
+									<option value="">옵션3</option>
+								</select>
+								<select class="select" title="옵션선택" disabled="disabled">
+									<option value="">disabled</option>
+									<option value="">옵션1</option>
+									<option value="">옵션2</option>
+									<option value="">옵션3</option>
+								</select>
+								<select class="select h40" title="옵션선택">
+									<option value="">select h40</option>
+									<option value="">옵션1</option>
+									<option value="">옵션2</option>
+									<option value="">옵션3</option>
+								</select>
+							</p>
+						</div>
+	
+						<h4>input</h4>
+						<div class="box">
+							<p>
+								<input class="input" type="text" placeholder="기본 input" title="내용입력">
+								<input class="input" type="text" placeholder="disabled" title="내용입력" disabled="disabled">
+								<input class="input h40" type="text" placeholder="input h40" title="내용입력">
+							</p>
+						</div>
+	
+						<h4>file</h4>
+						<div class="box">
+							<input class="input" type="file" placeholder="내용입력" title="파일첨부">
+							
+							<p class="inp_file mt10">
+								<input class="input" type="text" placeholder="첨부파일을 선택해주세요." title="첨부파일 선택">
+								<span class="btn_file">
+									<a href="#" class="button btn_gray">파일 찾기</a>
+									<input type="file" placeholder="내용입력" title="파일첨부">
+								</span>
+							</p>
+							<span class="inp_file mt10">
+								<input class="input" type="text" placeholder="첨부파일을 선택해주세요." title="첨부파일 선택">
+								<span class="btn_file">
+									<a href="#" class="button btn_gray">파일 찾기</a>
+									<input type="file" placeholder="내용입력" title="파일첨부">
+								</span>
+							</span>
+						</div>
+	
+						<h4>datepicker</h4>
+						<div class="box">
+							<span class="datepicker_wrap"><input class="input datepicker" type="text" title="날짜입력"></span>
+						</div>
+	
+						<h4>spinner</h4>
+						<div class="box">
+							<span class="inp_spinner" data-min="1" data-max="10">							
+								<span>
+									<input class="input" type="text" value="2" readonly="readonly">
+								</span>
+								<a href="#" class="btn btn_minus"><i class="fa fa-minus"></i><span class="blind">빼기</span></a>
+								<a href="#" class="btn btn_plus"><i class="fa fa-plus"></i><span class="blind">더하기</span></a>					
+							</span>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<strong class="t_blue">data-min</strong>와 <strong class="t_blue">data-max</strong>로 최소값 및 최대값 설정, input에 value가 없으면 최소값 설정됨
+						</div>
+	
+						<h4>alertTip <span>(확인 버튼 클릭)</span></h4>
+						<div class="box">
+							<input class="input" id="userId" type="text" placeholder="아이디를 입력하세요" title="아이디 입력">
+							<a href="javascript:vold(0)" class="button btn_gray" onclick="alertTip('#userId','아이디를 확인해주세요')">확인</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							alertTip 함수 사용. <strong class="t_red">alertTip(타겟ID,삽입내용)</strong> 예)alertTip('#userId','아이디를 확인해주세요') form태그(input, select, textarea) 위주로 사용
+						</div>
+					</div>
+	
+					<h3>탭메뉴</h3>
+					<h4>tabmenu, tab_motion</h4>
+					<ul id="tabMenu1" class="tabmenu tab_motion">
+						<li><a href="#tab1">탭메뉴1</a></li>
+						<li><a href="#tab2">탭메뉴2</a></li>
+						<li><a href="#tab3">탭메뉴3</a></li>
+						<li><a href="#tab4">탭메뉴4</a></li>
+					</ul>
+					<br>
+					<br>
+					<div id="tab1" class="cont_in tab_cont">탭 내용1 탭 내용1 탭 내용1 탭 내용1</div>
+					<div id="tab2" class="cont_in tab_cont">탭 내용2 탭 내용2 탭 내용2 탭 내용2</div>
+					<div id="tab3" class="cont_in tab_cont">탭 내용3 탭 내용3 탭 내용3 탭 내용3</div>
+					<div id="tab4" class="cont_in tab_cont">탭 내용4 탭 내용4 탭 내용4 탭 내용4</div>
+					<br>
+					<br>
+					<div class="cont_in">
+						<p><strong class="t_blue">.tab_motion</strong> 탭 바꾸는 클래스</p>
+						<br>
+						<p>파라미터를<br>
+							<strong class="t_red">http://현재주소?SclId=스크롤영역아이디</strong> 
+							입력하면 해당ID 영역까지 스크롤(display:none 상태면 안됨)
+							<br>예) <a href="http://design.cntt.kr.2/guide.html?SclId=tabMenu1">http://design.cntt.kr.2/guide.html?SclId=tabMenu1</a></p>
+						<br>
+						<p><strong class="t_red">http://현재주소?tabId=탭아이디&tabIdx=탭순서</strong> 입력하면 해당하는 탭이 열림, 탭순서는 0부터 시작 
+						<br>예) <a href="http://design.cntt.kr.2/guide.html?tabId=tabMenu1&tabIdx=2">http://design.cntt.kr.2/guide.html?tabId=tabMenu1&tabIdx=2</a></p>
+						<br>
+						<p>
+							<strong class="t_red">http://현재주소?SclId=스크롤영역아이디&tabId=탭아이디&tabIdx=탭순서</strong> 
+							해당하는 탭도 열리고 스크롤도 됨
+							<br>예) <a href="http://design.cntt.kr.2/guide.html?SclId=tabMenu1&tabId=tabMenu1&tabIdx=3">http://design.cntt.kr.2/guide.html?SclId=tabMenu1&tabId=tabMenu1&tabIdx=3</a></p>
+					</div>
+					<br>
+					<br>
+					<h4>상단고정 tabmenu</h4>
+					<div class="cont_in">
+						<p>tab_wrap로 감싸준다</p>
+					</div>
+					<br>
+					<div id="menu1" class="tab_wrap">
+						<ul class="tabmenu">
+							<li class="on"><a href="#menu1" class="btn_scroll">탭메뉴1</a></li>
+							<li><a href="#menu2" class="btn_scroll">탭메뉴2</a></li>
+							<li><a href="#menu3" class="btn_scroll">탭메뉴3</a></li>
+							<li><a href="#menu4" class="btn_scroll">탭메뉴4</a></li>
+						</ul>
+					</div>
+					<br><br><br><br><br><br><br><br><br><br>
+					<div id="menu2" class="tab_wrap">
+						<ul class="tabmenu">
+							<li><a href="#menu1" class="btn_scroll">탭메뉴1</a></li>
+							<li class="on"><a href="#menu2" class="btn_scroll">탭메뉴2</a></li>
+							<li><a href="#menu3" class="btn_scroll">탭메뉴3</a></li>
+							<li><a href="#menu4" class="btn_scroll">탭메뉴4</a></li>
+						</ul>
+					</div>
+					<br><br><br><br><br><br><br><br><br><br>
+					<div id="menu3" class="tab_wrap">
+						<ul class="tabmenu">
+							<li><a href="#menu1" class="btn_scroll">탭메뉴1</a></li>
+							<li><a href="#menu2" class="btn_scroll">탭메뉴2</a></li>
+							<li class="on"><a href="#menu3" class="btn_scroll">탭메뉴3</a></li>
+							<li><a href="#menu4" class="btn_scroll">탭메뉴4</a></li>
+						</ul>
+					</div>
+					<br><br><br><br><br><br><br><br><br><br>
+					<div id="menu4" class="tab_wrap">
+						<ul class="tabmenu">
+							<li><a href="#menu1" class="btn_scroll">탭메뉴1</a></li>
+							<li><a href="#menu2" class="btn_scroll">탭메뉴2</a></li>
+							<li><a href="#menu3" class="btn_scroll">탭메뉴3</a></li>
+							<li class="on"><a href="#menu4" class="btn_scroll">탭메뉴4</a></li>
+						</ul>
+					</div>
+	
+					<h4>tabmenu2</h4>
+					<ul class="tabmenu2">
+						<li class="on"><a href="#" class="button">탭메뉴1</a></li>
+						<li><a href="#" class="button">탭메뉴2</a></li>
+						<li><a href="#" class="button">탭메뉴3</a></li>
+						<li><a href="#" class="button">탭메뉴4</a></li>
+					</ul>
+	
+					<h3>팝업</h3>
+					<div class="cont_in">
+						<p class="box">
+							<a href="#popAdmin" class="button pop_open"><strong class="t_blue">.pop_open</strong> 클래스로 열기</a> href에 대상 팝업의 id 지정
+							<br><br>
+							<button class="button" onclick="popOpen('#popup')"><strong class="t_blue">popOpen()</strong> 함수로 열기</button> popOpen(대상 팝업의 id)
+						</p>
+					</div>
+						
+					<h3>table</h3>
+					<div class="search_box">
+						<label><strong class="lbl">검색</strong><input class="input h40 t_center" type="text" name="" id="" style="width:240px"></label>
+						<button class="button h40 w120 btn_black">검색</button>
+					</div>
+					
+					<div class="cont_in mt20">
+						<h4>tbl_info</h4>
+						<div class="tbl_info">
+							<div class="tit">리스트 제목</div>
+							<div class="info">				
+								<select class="select">
+									<option>10개씩보기</option>
+								</select>
+							</div>
+						</div>
+						<br>
+						<div class="tbl_info">
+							<div class="tit">리스트 제목</div>
+							<div class="info">총<strong class="t_red">245</strong>건</b></div>
+						</div>
+						<br>
+						<div class="tbl_info">
+							<div class="tit">리스트 제목</div>
+							<div class="info">
+								<input class="input" type="text" name="" id=""></label>
+								<button class="button btn_black">검색</button>
+							</div>
+						</div>
+						<br>
+						<table class="table2">
+							<colgroup>
+								<col width="15%">
+								<col>
+								<col width="15%">
+								<col>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">옵션선택1</th>
+									<td>
+										<label class="radio"><input name="radio" type="radio"><i></i>
+											<span class="lbl">라디오1</span>
+										</label>
+										<label class="radio"><input name="radio" type="radio"><i></i>
+											<span class="lbl">라디오2</span>
+										</label>
+									</td>
+									<th scope="row">옵션선택2</th>
+									<td>
+										<label class="checkbox"><input name="checkbox" type="checkbox"><i></i>
+											<span class="lbl">체크박스1</span>
+										</label>
+										<label class="checkbox"><input name="checkbox" type="checkbox"><i></i>
+											<span class="lbl">체크박스2</span>
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">옵션선택3</th>
+									<td>
+										<label class="radio"><input name="radio" type="radio"><i></i>
+											<span class="lbl">라디오1</span>
+										</label>
+										<label class="radio"><input name="radio" type="radio"><i></i>
+											<span class="lbl">라디오2</span>
+										</label>
+									</td>
+									<th scope="row">옵션선택4</th>
+									<td>
+										<label class="checkbox"><input name="checkbox" type="checkbox"><i></i>
+											<span class="lbl">체크박스1</span>
+										</label>
+										<label class="checkbox"><input name="checkbox" type="checkbox"><i></i>
+											<span class="lbl">체크박스2</span>
+										</label>
+										<label class="checkbox"><input name="checkbox" type="checkbox"><i></i>
+											<span class="lbl">체크박스3</span>
+										</label>
+										<label class="checkbox"><input name="checkbox" type="checkbox"><i></i>
+											<span class="lbl">체크박스4</span>
+										</label>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<br><br><br>
+						<h4>table클래스 설명</h4>
+						<p>기본 클래스:  <strong class="t_red">table</strong></p>
+						<p>th가 왼쪽에 있을 경우 클래스:  <strong class="t_red">tbl_left</strong></p>
+						<p>짝수 tr에 even클래스 부여 클래스: <strong class="t_red">tbl_row</strong></p>
+						<p>tr:hover 클래스: <strong class="t_red">tr_hover</strong></p>
+						<p>tr 클릭가능 클래스: <strong class="t_red">tr_click</strong></p>
+						<p>td에 라인 추가 클래스: <strong class="t_red">td_line</strong></p>
+	
+						<h4>table, tbl_row, tr_click</h4>
+						<p>체크박스에 <span class="t_blue">tbl-chk-all</span>와 <span class="t_blue">tbl-chk</span> 클래스 부여</p>
+						<table class="table tbl_row tr_click">
+							<caption>테이블제목</caption>
+							<colgroup>
+								<col style="width:70px;" />
+								<col style="width:70px;" />
+								<col />
+								<col style="width:50px;" />
+								<col style="width:90px;" />
+								<col style="width:75px;" />
+								<col style="width:140px;" />
+								<col style="width:100px;" />
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="col"><label class="checkbox"><input name="checkbox" type="checkbox" class="tbl-chk-all"><i></i></label></th>
+									<th scope="col">카드번호</th>
+									<th scope="col">요청문서</th>
+									<th scope="col"></th>
+									<th scope="col">페이지수</th>
+									<th scope="col">흑백/컬러</th>
+									<th scope="col">요청날짜</th>
+									<th scope="col">가격</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><label class="checkbox"><input name="checkbox" type="checkbox" class="tbl-chk"><i></i></label></td>
+									<td>1</td>
+									<td class="tl"><a href="#">예비보고서</a></td>
+									<td>1</td>
+									<td>6</td>
+									<td>흑백</td>
+									<td>2017-05-11 16:50</td>
+									<td class="td_yellow">47020</td>
+								</tr>
+								<tr>
+									<td><label class="checkbox"><input name="checkbox" type="checkbox" class="tbl-chk"><i></i></label></td>
+									<td>1</td>
+									<td class="tl"><a href="#">예비보고서</a></td>
+									<td>1</td>
+									<td>6</td>
+									<td>흑백</td>
+									<td>2017-05-11 16:50</td>
+									<td class="td_yellow">47020</td>
+								</tr>
+								<tr>
+									<td><label class="checkbox"><input name="checkbox" type="checkbox" class="tbl-chk"><i></i></label></td>
+									<td>1</td>
+									<td class="tl"><a href="#">예비보고서</a></td>
+									<td>1</td>
+									<td>6</td>
+									<td>흑백</td>
+									<td>2017-05-11 16:50</td>
+									<td class="td_yellow">47020</td>
+								</tr>
+								<tr>
+									<td><label class="checkbox"><input name="checkbox" type="checkbox" class="tbl-chk"><i></i></label></td>
+									<td>1</td>
+									<td class="tl"><a href="#">예비보고서</a></td>
+									<td>1</td>
+									<td>6</td>
+									<td>흑백</td>
+									<td>2017-05-11 16:50</td>
+									<td class="td_yellow">47020</td>
+								</tr>
+							</tbody>
+						</table>
+	
+						<div class="paging_wrap">
+							<div class="right">
+								<a href="#" class="button btn_green w120">엑셀다운로드</a>
+							</div>
+							<div class="paging">
+								<a href="#" class="btn btn_first"><em>맨처음</em></a>
+								<a href="#" class="btn btn_prev"><em>이전으로</em></a>
+								<span>
+									<a href="#">1</a>
+									<strong>2</strong>
+									<a href="#">3</a>
+									<a href="#">4</a>
+									<a href="#">5</a>
+								</span>
+								<a href="#" class="btn btn_next"><em>다음으로</em></a>
+								<a href="#" class="btn btn_last"><em>맨뒤로</em></a>
+							</div>
+						</div>
+						<h4>table, tbl_row, tr_hover</h4>
+						<table class="table tbl_row tr_hover">
+							<caption>테이블제목</caption>
+							<colgroup>
+								<col style="width:70px;" />
+								<col />
+								<col style="width:75px;" />
+								<col style="width:140px;" />
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="col">NO</th>
+									<th scope="col">분류</th>
+									<th scope="col">분류</th>
+									<th scope="col">분류</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>01</td>
+									<td class="tl"><a href="#">제목</a></td>
+									<td>6</td>
+									<td>2017-05-11 16:50</td>
+								</tr>
+								<tr>
+									<td>02</td>
+									<td class="tl"><a href="#">제목</a></td>
+									<td>6</td>
+									<td>2017-05-11 16:50</td>
+								</tr>
+								<tr>
+									<td>03</td>
+									<td class="tl"><a href="#">제목</a></td>
+									<td>6</td>
+									<td>2017-05-11 16:50</td>
+								</tr>
+								<tr>
+									<td>04</td>
+									<td class="tl"><a href="#">제목</a></td>
+									<td>6</td>
+									<td>2017-05-11 16:50</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="paging_wrap">
+							<div class="left">
+								<a href="#" class="button btn_gray w70">삭제</a>
+							</div>
+							<div class="paging f_right">
+								<a href="#" class="btn btn_first"><em>맨처음</em></a>
+								<a href="#" class="btn btn_prev"><em>이전으로</em></a>
+								<span><input type="text" value="1" readonly="readonly" /> / 30</span>
+								<a href="#" class="btn btn_next"><em>다음으로</em></a>
+								<a href="#" class="btn btn_last"><em>맨뒤로</em></a>
+							</div>
+						</div>
+						<h4>table, td_line</h4>
+						<table class="table td_line">
+							<caption>테이블 제목</caption>
+							<colgroup>
+								<col style="width:55px;" />
+								<col style="width:90px;" />
+								<col />
+								<col style="width:55px;" />
+								<col style="width:75px;" />
+								<col style="width:65px;" />
+								<col style="width:120px;" />
+								<col style="width:120px;" />
+								<col style="width:120px;" />
+								<col style="width:120px;" />
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="col">NO</th>
+									<th scope="col">분류</th>
+									<th scope="col">분류</th>
+									<th scope="col">분류</th>
+									<th scope="col">분류</th>
+									<th scope="col">분류</th>
+									<th scope="col">분류</th>
+									<th scope="col">분류</th>
+									<th scope="col">분류</th>
+									<th scope="col">분류</th>
+								</tr>		
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>내용</td>
+									<td><strong>내용</strong></td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td><a href="#" class="button h22 btn_blue2">추가</a></td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>내용</td>
+									<td><strong>내용</strong></td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td><a href="#" class="button h22 btn_gray2">삭제</a></td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>내용</td>
+									<td><strong>내용</strong></td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td><a href="#" class="button h22 btn_blue2">추가</a></td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>내용</td>
+									<td><strong>내용</strong></td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td>내용</td>
+									<td><a href="#" class="button h22 btn_gray2">삭제</a></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr class="bg_yellow">
+									<td colspan="10" class="tr">총 금액 <strong class="t_red fz16 ml15">451,000 원</strong></td>
+								</tr>
+							</tfoot>
+						</table>
+						<h4>table, tbl_left</h4>
+						<table class="table tbl_left">
+							<caption>테이블 제목</caption>
+							<colgroup>
+								<col style="width:170px;" />
+								<col style="width:120px;" />
+								<col style="width:160px;" />
+								<col style="width:120px;" />
+								<col style="width:160px;" />
+								<col />
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">분류</th>
+									<td>분류2</td>
+									<td>
+										<select name="" id="" class="select full">
+											<option value="">선택</option>
+										</select>
+									</td>
+									<td>입력</td>
+									<td>
+										<input type="text" name="" id="" class="input full">
+									</td>
+									<td class="tr">2017-05-11 16:50</td>
+								</tr>
+								<tr>
+									<th scope="row" rowspan="3">분류</th>
+									<td>분류2</td>
+									<td>
+										<select name="" id="" class="select full">
+											<option value="">선택</option>
+										</select>
+									</td>
+									<td>입력</td>
+									<td>
+										<input type="text" name="" id="" class="input full">
+									</td>
+									<td class="tr">2017-05-11 16:50</td>
+								</tr>
+								<tr>
+									<td>입력</td>
+									<td>
+										<input type="text" name="" id="" class="input full">
+									</td>
+									<td>분류2</td>
+									<td>
+										<select name="" id="" class="select full">
+											<option value="">5개씩 보기</option>
+										</select>
+									</td>
+									<td></td>
+								</tr>
+								<tr class="bg_gray">
+									<td>입력</td>
+									<td colspan="3">
+										<input type="text" name="" id="" class="input full">
+									</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+						<h3>etc</h3>
+						<h4>faq_list</h4>
+						<ul class="faq_list">
+							<li>
+								<p><a href="#">여기에 FAQ의 질문 내용이 보여집니다.</a></p>
+								<div>여기에 FAQ의 질문 내용에 대한 답변이 보여집니다. 여기에 FAQ의 질문 내용에 대한 답변이 보여집니다. 여기에 FAQ의 질문 보여집니다. 여기에 FAQ의 질문 내용에 대한 답변이 보여집니다. 여기에 FAQ의 질문 내용에 대한 답변이 보여집니다. 여기에 FAQ의 질문 내용에 대한 답변이 보여집니다.</div>
+							</li>
+							<li>
+								<p><a href="#">여기에 FAQ의 질문 내용이 보여집니다.</a></p>
+								<div>여기에 FAQ의 질문 내용에 대한 답변이 보여집니다. 여기에 FAQ의 질문 내용에 대한 답변이 보여집니다. 여기에 FAQ의 질문 보여집니다. 여기에 FAQ의 질문 내용에 대한 답변이 보여집니다. 여기에 FAQ의 질문 내용에 대한 답변이 보여집니다. 여기에 FAQ의 질문 내용에 대한 답변이 보여집니다.</div>
+							</li>
+						</ul>
+						<h4>countUp</h4>
+						<strong class="countUp fz32">123,456</strong>
+					</div>
+					<div class="button_box">
+						<a href="#" class="button btn_red h50 w150">확인</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- //컨텐츠 영역 -->
+
+		<!-- 푸터영역 -->
+		<footer id="footer">
+			<p class="copy">Copyright 2017 NENE Co., Ltd. All right Reserved.</p>
+		</footer>
+		<!-- 푸터영역 -->
+	</div>
+
+	<!-- 팝업 영역 -->
+	<div id="popAdmin" class="pop_wrap">
+		<article class="popup">
+			<div class="pop_head">
+				<h1>관리자 설정</h1>
+			</div>
+			<div class="pop_cont">
+				<ul class="pop_inpbox">
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>관리자 아이디</strong>
+							<input type="text" name="" id="" class="input h40 readonly" readonly="readonly" value="admin">
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>현재 비밀번호</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>변경 할 비밀번호</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>변경 할 비밀번호 확인</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li class="mail">
+						<label>
+							<strong class="lbl"><b>*</b>이메일 주소</strong>
+							<input type="text" name="" id="" class="input h40" >
+						</label>
+						<span class="ic">@</span>
+						<input type="text" name="" id="" class="input h40" >
+						<select name="" id="" class="select h40">
+							<option value="">직접입력</option>
+						</select>
+					</li>
+				</ul>
+			</div>
+			<div class="pop_foot">
+				<a href="" class="button w100 h50 btn_black pop_close">취소</a>
+				<a href="" class="button w100 h50 btn_red">저장</a>
+			</div>
+			<a href="#" class="btn_close pop_close">팝업닫기</a>
+		</article>
+	</div>
+
+	<div id="popup" class="pop_wrap">
+		<article class="popup pop_small">
+			<div class="pop_cont">
+				<ul class="pop_inpbox">
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>항목 명</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+					<li>
+						<label>
+							<strong class="lbl"><b>*</b>최초 수량</strong>
+							<input type="password" name="" id="" class="input h40" >
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="pop_foot">
+				<a href="" class="button w100 h50 btn_black pop_close">취소</a>
+				<a href="" class="button w100 h50 btn_red">저장</a>
+			</div>
+		</article>
+	</div>
+	<!-- //팝업 영역 -->
+</body>
+</html>

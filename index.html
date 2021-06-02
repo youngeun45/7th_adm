@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if lt IE 8]> <html class="lt-ie10 lt-ie9 lt-ie8" lang="ko"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie10 lt-ie9" lang="ko"> <![endif]-->
+<!--[if IE 9]>    <html class="lt-ie10" lang="ko"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="ko"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+<title>7번가피자 관리자</title>
+
+<link href="./resources/css/common.css" rel="stylesheet" />
+<link href="./resources/css/contents.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+<![endif]-->
+
+<script src="./resources/js/lib/jquery-1.12.4.min.js"></script>
+<script src="./resources/js/lib/jquery-migrate-1.4.1.min.js"></script>
+<script src="./resources/js/lib/jquery-ui-1.11.4.min.js"></script>
+<script src="./resources/js/lib/modernizr-2.8.3.min.js"></script>
+<script src="./resources/js/plugins.js"></script>
+<script src="./resources/js/flipclock.min.js"></script>
+<script src="./resources/js/ui.js"></script>
+</head>
+<body class="index">
+	<div class="login_wrap">
+		<h1>로그인</h1>
+		<div class="box">
+			<h2><img src="./resources/images/common/logo.png" alt="네네치킨"></h2>
+			<p class="t_center bold mb20 t_black">7번가피자 어드민 입니다. <br />운영자와 점주님만 들어가실 수 있습니다</p>
+			<ul>
+				<li class="inp">
+					<label>
+						<input type="text" name="" id="userId" class="input inp_tooltip" title="관리자 계정">
+						<span class="lbltxt">관리자 계정</span>
+					</label>
+					<a href="#" class="btnDel">삭제</a>
+				</li>
+				<li class="inp">
+					<label>
+						<input type="password" name="" id="" class="input inp_tooltip" title="비밀번호">
+						<span class="lbltxt">비밀번호</span>
+					</label>
+					<a href="#" class="btnDel">삭제</a>
+				</li>
+				<li class="btn">
+					<a href="#managerFstLogin" class="button btn_black f_right pop_open">로그인</a>
+				</li>
+			</ul>
+		</div>
+		<p>Copyright 2018 7ST STREET PIZZA Co., Ltd. All right Reserved.</p>
+	</div>
+	<article id="managerFstLogin" class="pop_wrap">
+		<div class="popup pop_small">
+			<div class="pop_head">
+				<h1>비밀번호 변경</h1>
+			</div>
+			<div class="pop_cont">
+				<div class="edit_pw_wrap">
+					<p class="t_center bold mb20 t_black">점주님께서 사용하실 비밀번호로 변경해주세요 <br />(최초 로그인시 1회 변경)</p>
+					<ul class="pop_inpbox">
+						<li>
+							<label>
+								<strong class="lbl">새 비밀번호</strong>
+								<input type="password" name="" id="" class="input h40" title="새 비밀번호 입력" placeholder="영문,숫자 조합 8~20자">
+							</label>
+						</li>
+						<li>
+							<label>
+								<strong class="lbl">새 비밀번호 확인</strong>
+								<input type="password" name="" id="" class="input h40" title="새 비밀번호 확인" placeholder="비밀전호 재입력">
+							</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="pop_foot">
+				<a href="#" class="button btn_green w200 h50">변경 후 로그인</a>
+			</div>
+			<a href="#" class="btn_close pop_close">닫기</a>
+		</div>
+	</article>
+<script>
+	$(function(){		
+		//센터 정렬
+		vaMid('.login_wrap')
+		$(window).resize(function(){
+			vaMid('.login_wrap')
+		})
+
+		//input  삭제버튼(.btnDel) 노출
+		$('.inp .input').focus(function(){
+			$(this).closest('li').addClass('focus');
+		}).blur(function(){
+			if($(this).val() == ''){
+				$(this).closest('li').removeClass('focus');
+			}
+		});
+
+		//.btnDel 버튼 기능
+		$('.btnDel').click(function(e){
+			e.preventDefault();	
+			$(this).prev().find('.input').val('').focus();
+		});
+
+		
+		$('.btn_Login').click(function(e){
+			e.preventDefault();
+			alertTip('#userId','아이디를 잘못입력하셨습니다.')
+		})
+	})
+</script>
+</body>
+</html>
